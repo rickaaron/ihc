@@ -1,21 +1,38 @@
 <template>
-  
-  <div class="contaier">
-    <div class="box">
-      <h1> Bienvenido al consultorio  </h1>
+
+  <div class="columns is-mobile is-centered">
+    <div class="column is-6 ">
+      <div class="box has-text-centered">
+        <h1 class=" title is-3 "> Bienvenido al consultorio </h1>
+        <img alt="Vue logo" src="../assets/dent.png">
+        <p class=" subtitle is-6 has-text-justified"> Plataforma creada para Dentistas. Lleva el control de tus pacientes asi como de sus
+          citas y expedientes. </p>
+
+        <hr>
+
+        <h3 class=" subtitle is-4"> <strong> ¿Eres un paciente? </strong> Busca tu folio: </h3>
+
+        <div class="field has-addons has-addons-centered ">
+          <div class="control">
+            <input class="input is-rounded " type="text" placeholder="#Folio">
+          </div>
+          <div class="control">
+            <a class="button is-info is-rounded ">
+              <fa-icon icon='search'></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
 
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+<script> 
 
-export default {
-  name: 'home',
-  // components: {
-  //   HelloWorld
-  // }
-}
+  export default {
+    name: 'home', 
+  }
+
 </script>
