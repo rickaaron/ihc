@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h3>Citas</h3>
+    <h3 class=" title is-4  " >Citas</h3>
+    <hr>
     <ul>
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Ramiro Martinez</h3>
+            23/4/2019 , 8:20 PM - <strong>Ramiro Martinez </strong>  
 
           </div>
           <div class="level-rigth">
@@ -24,7 +25,7 @@
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Aurora Martinez</h3>
+            23/4/2019 , 8:20 PM - <strong>Aurora Martinez </strong> 
 
           </div>
           <div class="level-rigth">

@@ -3,7 +3,9 @@
     <div class="columns is-centered is-mobile ">
       <div class="column is-6 ">
         <div class=" box ">
-          <h4> Paciente: Alan Ramirez </h4>
+
+          <h3 class=" title is-2 has-text-centered "> Cita </h3>
+          <h3 class=" title is-4 has-text-centered "> Paciente: Alan Ramirez </h3>
           <p> (Datos editables)</p>
           <div class="field">
             <label class="label"> Sintomas :</label>
@@ -12,7 +14,7 @@
             </div>
           </div>
           <div class="field">
-            <label class="label"> Reseta :</label>
+            <label class="label"> Tratamiento:</label>
             <div class="control">
               <textarea class="textarea" placeholder="Historial clinico" v-model=" paciente.receta "></textarea>
             </div>
@@ -21,7 +23,7 @@
             <button class="button is-info "> Guardar </button>
           </div>
 
-          <hr>
+          <!-- <hr>
           <div class="level">
             <div class="level-left">
               <router-link to="/Login" class="button is-success "> Expediente </router-link>
@@ -31,7 +33,7 @@
             <div class="level-rigth">
               <router-link to="/Login" class="button is-success "> Agendar Cita </router-link>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>

@@ -2,7 +2,7 @@
   <div>
     <div class="level">
       <div class="level-left">
-        <h3>Pacientes</h3>
+        <h3 class=" title is-4  ">Pacientes</h3>
 
       </div>
       <div class="level-rigth">
@@ -11,11 +11,14 @@
         </button>
       </div>
     </div>
+    <hr>
     <ul>
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Ramiro Martinez</h3>
+            <p>
+               <strong>Ramiro Martinez </strong>
+            </p>
 
           </div>
           <div class="level-rigth">
@@ -34,7 +37,7 @@
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Aurora Martinez</h3>
+             <strong> Aurora Martinez </strong> 
 
           </div>
           <div class="level-rigth">

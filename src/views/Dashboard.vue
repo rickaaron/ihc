@@ -5,28 +5,28 @@
         <p class="panel-heading">
           Menu
         </p>
-        <router-link :to="{ name: 'Dashboard', params: { option: 'pacientes' }}" class="panel-block"
+        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'pacientes' }}" class="panel-block"
           :class=" { 'is-active': option == 'pacientes' } ">
           <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
           </span>
           Pacientes
         </router-link>
-        <router-link :to="{ name: 'Dashboard', params: { option: 'citas' }}" class="panel-block"
+        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'citas' }}" class="panel-block"
           :class=" { 'is-active': option == 'citas' } ">
           <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
           </span>
           Citas
         </router-link>
-        <router-link :to="{ name: 'Dashboard', params: { option: 'recetas' }}" class="panel-block"
-          :class=" { 'is-active': option == 'recetas' } ">
+        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'tratamientos' }}" class="panel-block"
+          :class=" { 'is-active': option == 'tratamientos' } ">
           <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
           </span>
-          Recetas
+          Tratamientos
         </router-link>
-        <router-link :to="{ name: 'Dashboard', params: { option: 'expediente' }}" class="panel-block"
+        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'expediente' }}" class="panel-block"
           :class=" { 'is-active': option == 'expediente' } ">
           <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
@@ -45,12 +45,20 @@
         <citas-comp v-if=" option == 'citas'  ">
 
         </citas-comp>
-        <recetas-comp v-if=" option == 'recetas'  ">
+        <tratamientos-comp v-if=" option == 'tratamientos'  ">
 
-        </recetas-comp>
+        </tratamientos-comp>
         <expediente-comp v-if=" option == 'expediente'  ">
 
         </expediente-comp>
+        <div v-if=" option == 'none'  " class=" has-text-centered ">
+          <img src="../assets/info.png" alt="" width="100">
+          <br>
+          Selecciona una opcion 
+          <br>
+          <br>
+          <br>
+        </div>
       </div>
 
     </div>
@@ -60,7 +68,7 @@
 <script>
   import PacientesComp from '@/components/Pacientes.vue'
   import CitasComp from '@/components/Citas.vue'
-  import RecetasComp from '@/components/Recetas.vue'
+  import TratamientosComp from '@/components/Recetas.vue'
   import ExpedienteComp from '@/components/Expediente.vue'
   import {
     watch
@@ -70,7 +78,7 @@
     components: {
       PacientesComp,
       CitasComp,
-      RecetasComp,
+      TratamientosComp,
       ExpedienteComp,
     },
     data() {
@@ -78,14 +86,23 @@
         option: 'none',
       })
     },
+    methods: {
+      set_option: function () {
+        if (this.$route.params.option) {
+          this.option = this.$route.params.option;
+        }else{
+          this.option = 'none';
+        }
+      }
+    },
     mounted() {
       console.log(this.$route.params);
-      this.option = this.$route.params.option;
+      this.set_option();
     },
     watch: {
       '$route'(to, from) {
-        this.option = this.$route.params.option;
-        // react to route changes...
+        this.set_option();
+
       }
     }
   }
