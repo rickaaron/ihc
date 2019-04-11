@@ -8,37 +8,37 @@
         <router-link :to="{ name: 'Dashboard/Option', params: { option: 'pacientes' }}" class="panel-block"
           :class=" { 'is-active': option == 'pacientes' } ">
           <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
+            <fa-icon icon='user-injured'></fa-icon>
           </span>
           Pacientes
         </router-link>
         <router-link :to="{ name: 'Dashboard/Option', params: { option: 'citas' }}" class="panel-block"
           :class=" { 'is-active': option == 'citas' } ">
           <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
+            <fa-icon icon='table'></fa-icon>
           </span>
           Citas
         </router-link>
         <router-link :to="{ name: 'Dashboard/Option', params: { option: 'tratamientos' }}" class="panel-block"
           :class=" { 'is-active': option == 'tratamientos' } ">
           <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
+            <fa-icon icon='file-alt'></fa-icon>
           </span>
           Tratamientos
         </router-link>
-        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'expediente' }}" class="panel-block"
-          :class=" { 'is-active': option == 'expediente' } ">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
+        <router-link :to="{ name: 'Dashboard/Option', params: { option: 'configuracion' }}" class="panel-block"
+          :class=" { 'is-active': option == 'configuracion' } ">
+          <span class="panel-icon"> 
+            <fa-icon icon='cog'></fa-icon>
           </span>
-          Expediente
+          Configuración
         </router-link>
       </div>
 
 
     </div>
     <div class="column is-8  ">
-      <div class="box">
+      <div class="box" id="das-box">
         <pacientes-comp v-if=" option == 'pacientes'  ">
 
         </pacientes-comp>
@@ -48,9 +48,10 @@
         <tratamientos-comp v-if=" option == 'tratamientos'  ">
 
         </tratamientos-comp>
-        <expediente-comp v-if=" option == 'expediente'  ">
+        <config-comp v-if=" option == 'configuracion'  " >
 
-        </expediente-comp>
+        </config-comp>
+
         <div v-if=" option == 'none'  " class=" has-text-centered ">
           <img src="../assets/info.png" alt="" width="100">
           <br>
@@ -66,10 +67,11 @@
 </template>
 
 <script>
-  import PacientesComp from '@/components/Pacientes.vue'
-  import CitasComp from '@/components/Citas.vue'
-  import TratamientosComp from '@/components/Recetas.vue'
-  import ExpedienteComp from '@/components/Expediente.vue'
+  import PacientesComp from './Pacientes.vue'
+  import CitasComp from './Citas.vue'
+  import TratamientosComp from './Tratamientos.vue'
+  import ExpedienteComp from './Expediente.vue'
+  import ConfigComp from './Configuration.vue'
   import {
     watch
   } from 'fs';
@@ -80,6 +82,7 @@
       CitasComp,
       TratamientosComp,
       ExpedienteComp,
+      ConfigComp,
     },
     data() {
       return ({
@@ -110,5 +113,8 @@
 </script>
 
 <style>
-
+#das-box{
+  max-height: 633px;
+  overflow-y: scroll;
+}
 </style>

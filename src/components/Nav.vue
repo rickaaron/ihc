@@ -16,7 +16,7 @@
         </div>
         <div class="field is-grouped" v-if=" session.id != null">
           <p class="control">
-            <router-link to="/configuracion" class="button is-info "> <fa-icon icon='cog'></fa-icon>  </router-link>
+            <router-link to="/dashboard" class="button is-info "> <fa-icon icon='home'></fa-icon>  </router-link>
           </p>
           <p class="control">
             <router-link to="/logout" class="button is-danger "> <fa-icon icon='sign-out-alt'></fa-icon> </router-link>

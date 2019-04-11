@@ -21,19 +21,7 @@
           </div>
           <div class="buttons has-addons is-right">
             <button class="button is-info "> Guardar </button>
-          </div>
-
-          <!-- <hr>
-          <div class="level">
-            <div class="level-left">
-              <router-link to="/Login" class="button is-success "> Expediente </router-link>
-
-
-            </div>
-            <div class="level-rigth">
-              <router-link to="/Login" class="button is-success "> Agendar Cita </router-link>
-            </div>
-          </div> -->
+          </div> 
         </div>
 
       </div>

@@ -27,7 +27,7 @@
                 <router-link to="/Login" class="button is-success ">Ver </router-link>
               </p>
               <p class="control">
-                <router-link to="/Signin" class="button is-danger ">X</router-link>
+                <router-link to="/Signin" class="button is-danger "> <fa-icon icon='trash'></fa-icon> </router-link>
               </p>
             </div>
           </div>
@@ -46,7 +46,7 @@
                 <router-link to="/Login" class="button is-success ">Ver </router-link>
               </p>
               <p class="control">
-                <router-link to="/Signin" class="button is-danger ">X</router-link>
+                <router-link to="/Signin" class="button is-danger "> <fa-icon icon='trash'></fa-icon> </router-link>
               </p>
             </div>
           </div>
