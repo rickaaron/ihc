@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Signin from './views/Signin.vue'
 import Login from './views/Login.vue'
+import Logout from './views/Logout.vue'
+import Terminos from './views/Terminos.vue'
 
 import Dashboard from './views/Dashboard.vue'
 
@@ -28,6 +30,8 @@ import VerExpediente from './views/Ver_Expediente.vue'
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
 
+import Modals from './views/Modals.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +45,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: Logout
     },
     {
       path: '/signin',
@@ -118,6 +127,16 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact
+    },
+    {
+      path: '/Modals',
+      name: 'Modals',
+      component: Modals
+    },
+    {
+      path: '/terminos-y-condiciones',
+      name: 'terminos',
+      component: Terminos
     },
      
   ]
