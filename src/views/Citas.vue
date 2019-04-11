@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h3>Recetas</h3>
+    <h3 class=" title is-4  " >Citas</h3>
+    <hr>
     <ul>
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Ramiro Martinez</h3>
+            23/4/2019 , 8:20 PM - <strong>Ramiro Martinez </strong>  
 
           </div>
           <div class="level-rigth">
@@ -14,7 +15,7 @@
                 <router-link to="/Login" class="button is-success ">Ver </router-link>
               </p>
               <p class="control">
-                <router-link to="/Signin" class="button is-danger ">X</router-link>
+                <router-link to="/Signin" class="button is-danger "> <fa-icon icon='trash'></fa-icon> </router-link>
               </p>
             </div>
           </div>
@@ -24,7 +25,7 @@
       <li>
         <div class="level">
           <div class="level-left">
-            <h3>Aurora Martinez</h3>
+            23/4/2019 , 8:20 PM - <strong>Aurora Martinez </strong> 
 
           </div>
           <div class="level-rigth">
@@ -33,7 +34,7 @@
                 <router-link to="/Login" class="button is-success ">Ver </router-link>
               </p>
               <p class="control">
-                <router-link to="/Signin" class="button is-danger ">X</router-link>
+                <router-link to="/Signin" class="button is-danger "> <fa-icon icon='trash'></fa-icon> </router-link>
               </p>
             </div>
           </div>

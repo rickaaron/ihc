@@ -6,13 +6,24 @@ import Login from './views/Login.vue'
 
 import Dashboard from './views/Dashboard.vue'
 
-import Configuration from './views/Configuration.vue'
+
 
 import Paciente from './views/Paciente.vue'
 import AgregarPaciente from './views/Agregar_Paciente.vue'
 
 import Cita from './views/Cita.vue'
 import AgregarCita from './views/Agregar_Cita.vue'
+
+import Tratamiento from './views/Tratamiento.vue'
+import AgregarReceta from './views/Agregar_Receta.vue'
+
+import Expediente from './views/Expediente.vue'
+
+import BuscarFolio from './views/Buscar_Folio.vue'
+
+import VerCitas from './views/Ver_Citas.vue'
+import VerExpediente from './views/Ver_Expediente.vue'
+
 
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
@@ -66,7 +77,38 @@ export default new Router({
       name: 'AgregarCita',
       component: AgregarCita
     },
+    {
+      path: '/tratamiento/:id',
+      name: 'tratamiento',
+      component: Tratamiento
+    },
+    {
+      path: '/agregar-receta/:id',
+      name: 'AgregarReceta',
+      component: AgregarReceta
+    },
+    {
+      path: '/expediente/:id',
+      name: 'expediente',
+      component: Expediente
+    }, 
 
+    {
+      path: '/buscar-folio/:id',
+      name: 'buscar-folio',
+      component: BuscarFolio
+    },
+    {
+      path: '/ver-citas/:id',
+      name: 'ver-citas',
+      component: VerCitas
+    },
+
+    {
+      path: '/ver-expediente/:id',
+      name: 'ver-expediente',
+      component: VerExpediente
+    },
     {
       path: '/about',
       name: 'about',
@@ -77,12 +119,6 @@ export default new Router({
       name: 'contact',
       component: Contact
     },
-    {
-      path: '/configuracion',
-      name: 'configuracion',
-      component: Configuration
-    },
-
-
+     
   ]
 })
