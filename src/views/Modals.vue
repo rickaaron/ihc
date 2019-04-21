@@ -6,6 +6,12 @@
       <div class="modal-content">
         <div class="box has-text-centered">
           <h4 class='subtitle'> ¿ Esta seguro desea eliminar la cita ? </h4>
+          <div class="field">
+            <label class="label"> Motivo </label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Motivo"></textarea>
+            </div>
+          </div>
           <button class=" button is-danger is-fullwidth">
             Si
           </button>
@@ -20,6 +26,12 @@
       <div class="modal-content">
         <div class="box has-text-centered">
           <h4 class='subtitle'> ¿ Esta seguro desea eliminar el tratamiento ? </h4>
+          <div class="field">
+            <label class="label"> Motivo </label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Motivo"> El tratamiento no era el adecuado </textarea>
+            </div>
+          </div>
           <button class=" button is-danger is-fullwidth">
             Si
           </button>
@@ -84,7 +96,7 @@
   export default {
     data() {
       return ({
-        modal: 6,
+        modal: 2,
       })
     }
   }
