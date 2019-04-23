@@ -3,14 +3,13 @@
     <div class="hero-head">
       <nav-bar></nav-bar>
     </div>
-
     <!-- Hero content: will be in the middle -->
     <div class="hero-body">
       <div class="container">
 
-      <router-view  />
+        <router-view />
       </div>
-       
+
     </div>
 
     <!-- Hero footer: will stick at the bottom -->
@@ -25,21 +24,39 @@
       </div>
       <br>
     </div>
+    <app-modal />
+
   </section>
-
-
+  
 </template>
 <script>
   import NavBar from '@/components/Nav.vue'
   export default {
     components: {
       NavBar
+    },
+    methods: {
+
+    },
+    mounted() {
+      // this.$modal_error.show( [ 'sdasdasd'] )
+      
+      this.$http.get('home').then(response => {
+        // get body data
+        console.log( response.data ) 
+
+      }, response => {
+        // error callback
+        console.log( response.data ) 
+
+      });
     }
+
   }
 
 </script>
 
 <style lang="scss">
   @import '~bulma/bulma';
-  
+
 </style>
