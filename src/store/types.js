@@ -10,6 +10,7 @@ export const MUTATE_SET_SEARCHTEXT = 'search/MUTATE_SET_SEARCHTEXT';
 
 export const MUTATE_UPDATE_SESSION = 'session/MUTATE_UPDATE_SESSION';
 export const MUTATE_SET_SESSION = 'session/MUTATE_SET_SESSION';
+export const MUTATE_DELETE_SESSION = 'session/MUTATE_DELETE_SESSION';
  
 //----------------------------------------------------------------------------------//
   

@@ -4,7 +4,7 @@
     <div class="modal-card">
       <header class="modal-card-head has-text-centered has-background-danger  ">
         <p class="modal-card-title is-size-3 has-text-white">
-          <fa-i :icon=' Icon'></fa-i> {{Title}}
+          <fa-icon :icon=' Icon'></fa-icon> {{Title}}
         </p>
         <button class="delete" aria-label="close" @click=" hide() "></button>
       </header>

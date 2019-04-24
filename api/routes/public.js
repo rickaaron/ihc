@@ -6,6 +6,11 @@ const Ctr_Public = require('./controllers/Ctr_Public');
 
 router.get('/home', Ctr_Public.GET_HOME);
 
+
+
+router.post('/signin', Ctr_Public.POST_SINGIN);
+router.post('/login', Ctr_Public.POST_LOGIN);
+
 // router.get('/Lyfs/Dashboard', Ctr_Lyfs.LyfsDashbord);
 
 

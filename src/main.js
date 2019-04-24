@@ -22,6 +22,19 @@ Vue.use(ModalError);
 // Vue.http.options.credentials = false;
 Vue.http.options.root = 'http://localhost:3000/api/';
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk';
+Vue.http.interceptors.push(function(request) {
+  console.log( request )
+  return function(response) {
+ 
+    console.log( response )
+
+  };
+
+
+});
+
+
+
 Vue.component('fa-icon', FontAwesomeIcon)
 Vue.config.productionTip = true;
 window.validate = require("validate.js");

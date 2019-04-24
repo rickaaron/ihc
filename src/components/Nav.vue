@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import * as types from '../store/types';
+  import * as types from '../store/types';
   import {
     mapGetters,
     mapActions
@@ -45,12 +45,12 @@ import * as types from '../store/types';
     data() {
       return ({
 
-        
+
       })
     },
     computed: {
       ...mapGetters({
-        'session': types.SESSION, 
+        'session': types.SESSION,
       }),
     },
   }

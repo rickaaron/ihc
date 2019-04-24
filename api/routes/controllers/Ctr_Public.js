@@ -1,6 +1,6 @@
-// const Token = require('../heplers/token.js');
 // var validate = require('../heplers/validate.js');
-// const Mdl_User = require('../models/Mdl_User')
+const Token = require('../heplers/token.js');
+const Mdl_Public = require('../models/Mdl_Public')
 
 
 // const bcrypt = require('bcrypt');
@@ -23,4 +23,71 @@ exports.GET_HOME = (req, res) => {
   res.json(' HOla desde la api');
 }
 
- 
+
+
+
+exports.POST_SINGIN = (req, res) => {
+  Mdl_Public.check_email(req.body.email).then(is_registred => {
+
+    if (!is_registred) {
+
+      Mdl_Public.new_user(req.body).then(id_new_user => {
+
+        Mdl_Public.get_user_id(id_new_user).then(user => {
+          // console.log( user )
+          Token.do_token(user).then(new_token => {
+
+            res.status(200).json({
+              token: new_token
+            });
+
+          });
+
+        });
+
+      });
+
+    } else {
+      res.status(400).json({
+        errors: [
+          'El usuario ya esta registrado'
+        ]
+      });
+    }
+  })
+}
+
+
+exports.POST_LOGIN = (req, res) => {
+  Mdl_Public.check_email(req.body.email).then(is_registred => {
+
+    if (is_registred) {
+
+      Mdl_Public.login(req.body.email, req.body.password ).then(user => {
+        // console.log( user )
+
+        if (user.length > 0) {
+          Token.do_token(user[0]).then(new_token => {
+            res.status(200).json({
+              token: new_token
+            });
+          });
+        } else {
+          res.status(400).json({
+            errors: [
+              'Email o contra equivocados '
+            ]
+          });
+        }
+      });
+
+
+    } else {
+      res.status(400).json({
+        errors: [
+          'Email o contra equivocados'
+        ]
+      });
+    }
+  })
+}

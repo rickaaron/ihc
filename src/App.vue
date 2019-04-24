@@ -6,8 +6,9 @@
     <!-- Hero content: will be in the middle -->
     <div class="hero-body">
       <div class="container">
-
-        <router-view />
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
 
     </div>
@@ -27,7 +28,7 @@
     <app-modal />
 
   </section>
-  
+
 </template>
 <script>
   import NavBar from '@/components/Nav.vue'
@@ -40,14 +41,14 @@
     },
     mounted() {
       // this.$modal_error.show( [ 'sdasdasd'] )
-      
+
       this.$http.get('home').then(response => {
         // get body data
-        console.log( response.data ) 
+        console.log(response.data)
 
       }, response => {
         // error callback
-        console.log( response.data ) 
+        console.log(response.data)
 
       });
     }
@@ -58,5 +59,17 @@
 
 <style lang="scss">
   @import '~bulma/bulma';
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
 
 </style>
