@@ -3,14 +3,14 @@
     <div class="hero-head">
       <nav-bar></nav-bar>
     </div>
-
     <!-- Hero content: will be in the middle -->
     <div class="hero-body">
       <div class="container">
-
-      <router-view  />
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
-       
+
     </div>
 
     <!-- Hero footer: will stick at the bottom -->
@@ -25,8 +25,9 @@
       </div>
       <br>
     </div>
-  </section>
+    <app-modal />
 
+  </section>
 
 </template>
 <script>
@@ -34,12 +35,41 @@
   export default {
     components: {
       NavBar
+    },
+    methods: {
+
+    },
+    mounted() {
+      // this.$modal_error.show( [ 'sdasdasd'] )
+
+      this.$http.get('home').then(response => {
+        // get body data
+        console.log(response.data)
+
+      }, response => {
+        // error callback
+        console.log(response.data)
+
+      });
     }
+
   }
 
 </script>
 
 <style lang="scss">
   @import '~bulma/bulma';
-  
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
+
 </style>
