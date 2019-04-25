@@ -5,9 +5,9 @@
         <h3 class=" title is-4  ">Pacientes</h3>
       </div>
       <div class="level-rigth">
-        <button class=" button is-info  ">
+        <router-link to="/agregar-paciente" class=" button is-info  ">
           Agregar
-        </button>
+        </router-link>
       </div>
     </div>
     <hr>

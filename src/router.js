@@ -53,7 +53,7 @@ export default new Router({
     },
     {
       path: '/signin',
-      name: 'Signin',
+      name: 'signin',
       component: Signin
     },
     {
@@ -68,17 +68,17 @@ export default new Router({
     },
     {
       path: '/paciente/:id',
-      name: 'Paciente',
+      name: 'paciente',
       component: Paciente
     },
     {
       path: '/agregar-paciente',
-      name: 'AgregarPaciente',
+      name: 'agregar-paciente',
       component: AgregarPaciente
     },
     {
       path: '/cita/:id',
-      name: 'Cita',
+      name: 'cita',
       component: Cita
     },
     {
@@ -93,7 +93,7 @@ export default new Router({
     },
     {
       path: '/agregar-receta/:id',
-      name: 'AgregarReceta',
+      name: 'agregar-receta',
       component: AgregarReceta
     },
     {
@@ -135,7 +135,7 @@ export default new Router({
     },
     {
       path: '/terminos-y-condiciones',
-      name: 'terminos',
+      name: 'terminos-y-condiciones',
       component: Terminos
     },
      
