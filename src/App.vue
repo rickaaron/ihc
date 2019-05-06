@@ -32,6 +32,8 @@
 </template>
 <script>
   import NavBar from '@/components/Nav.vue'
+  import * as types from './store/types';
+
   export default {
     components: {
       NavBar
@@ -40,12 +42,11 @@
 
     },
     mounted() {
-      // this.$modal_error.show( [ 'sdasdasd'] )
+      this.$store.commit(types.MUTATE_SET_SESSION);
 
       this.$http.get('home').then(response => {
         // get body data
         console.log(response.data)
-
       }, response => {
         // error callback
         console.log(response.data)

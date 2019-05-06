@@ -82,7 +82,7 @@ export default new Router({
       component: Cita
     },
     {
-      path: '/agregar-cita/:id',
+      path: '/agregar-cita/:id_patient',
       name: 'AgregarCita',
       component: AgregarCita
     },
