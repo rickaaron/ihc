@@ -6,12 +6,12 @@
         <div class=" box ">
 
           <h3 class=" title is-2 has-text-centered "> Agendar cita </h3>
-          <h3 class=" title is-4 has-text-centered "> Paciente: Alan Ramirez </h3>
-          <form action="">
+          <h3 class=" title is-4 has-text-centered "> Paciente: {{ patient.name }} </h3>
+          <form @submit=" add_quote ">
             <div class="field">
               <label class="label ">Fecha</label>
               <div class="control">
-                <input class="input" type="date" placeholder="Nombre" v-model=" cita.fecha ">
+                <input class="input" type="date" placeholder="Nombre" v-model=" quote.date ">
               </div>
             </div>
             <div class="columns">
@@ -20,7 +20,7 @@
                   <label class="label">Hora</label>
                   <div class="control">
                     <div class="select is-fullwidth">
-                      <select v-model=" cita.hora ">
+                      <select v-model=" quote.hour ">
                         <option :value=" hora.value " v-for=" ( hora, index ) in horas " :key=" index "> {{hora.name }}
                         </option>
                       </select>
@@ -28,12 +28,26 @@
                   </div>
                 </div>
               </div>
+              <div class="column is-4 ">
+                <div class="field">
+                  <label class="label">Minuto</label>
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select v-model=" quote.min ">
+                        <option :value=" minuto.value " v-for=" ( minuto, index ) in minutos " :key=" index ">
+                          {{minuto.name }} </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="column is-4">
                 <div class="field">
                   <label class="label"> Período </label>
                   <div class="control">
                     <div class="select is-fullwidth ">
-                      <select v-model=" cita.tipo ">
+                      <select v-model=" quote.period ">
                         <option :value=" tipo.value " v-for=" ( tipo, index ) in tipos " :key=" index "> {{tipo.name }}
                         </option>
                       </select>
@@ -42,22 +56,9 @@
                 </div>
               </div>
 
-              <div class="column is-4 ">
-                <div class="field">
-                  <label class="label">Minuto</label>
-                  <div class="control">
-                    <div class="select is-fullwidth">
-                      <select v-model=" cita.minuto ">
-                        <option :value=" minuto.value " v-for=" ( minuto, index ) in minutos " :key=" index ">
-                          {{minuto.name }} </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="buttons has-addons is-right">
-              <button class="button is-success "> Agendar </button>
+              <button class="button is-success " :class="  { 'is-loading': is_loading } "> Agendar </button>
             </div>
 
 
@@ -72,11 +73,12 @@
   export default {
     data() {
       return ({
-        cita: {
-          fecha: new Date().toDateString(),
-          hora: 1,
-          tipo: 'AM',
-          minuto: 0,
+        patient: {},
+        quote: {
+          date: '',
+          hour: 1,
+          period: 'AM',
+          min: 0,
         },
         horas: [{
             name: '1:00',
@@ -162,7 +164,79 @@
           }
         ]
       })
-    }
+    },
+    methods: {
+      get_date: function () {
+        let temp_date = new Date()
+        this.quote.fecha = temp_date.getDate() + '-' + temp_date.getMonth() + '-' + temp_date.getFullYear();
+        console.log(this.quote.fecha);
+      },
+
+      add_quote: function (event) {
+        event.preventDefault();
+        this.is_loading = true;
+
+        const constraints = {
+          // fecha: '',
+          // hora: 1,
+          // tipo: 'AM',
+          // minuto: 0,
+          date: {
+            datetime: {
+              dateOnly: true,
+              message: "Recuerda agregar la fecha "
+            }
+          },
+
+          hour: {
+            presence: {
+              message: "Falta la hora"
+            },
+          },
+          min: {
+            presence: {
+              message: "Falta los minutos"
+            },
+          },
+          period: {
+            presence: {
+              message: "Falta el periodo"
+            },
+          },
+        };
+        validate.async(this.quote, constraints).then(
+          data => {
+            console.log(data)
+            // this.is_loading = false;
+
+          },
+        ).catch(errors => {
+          this.$modal_error.show(errors);
+          this.is_loading = false;
+        });
+
+      }
+    },
+    created() {
+      this.get_date();
+
+
+      this.$http.get("user/get-patient", {
+        params: {
+          id_patient: this.$route.params.id_patient
+        }
+      }).then(
+        response => {
+          this.patient = response.data.patient;
+          // this.is_loading = false;
+          // this.$store.commit(types.MUTATE_UPDATE_SESSION, response.data);
+        }
+      ).catch(errors => {
+        // this.$modal_error.show(errors.data.errors);
+      });
+
+    },
+
   }
 
 </script>

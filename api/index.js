@@ -15,6 +15,7 @@ app.use(express.json()); // to support JSON-encoded bodies
 app.use(morgan('dev'));
 app.use((req, res, next) => {
   console.log('body', req.body);
+  console.log('query', req.query);
   res.append('Access-Control-Allow-Origin', '*');
   res.append('Access-Control-Allow-Methods', '*');
   res.append('Access-Control-Allow-Headers', 'Content-Type, authorization');

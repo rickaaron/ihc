@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import * as types from '../types';
 import JWT from "jsonwebtoken";
 
@@ -17,7 +19,7 @@ const getters = {
 const mutations = {
 
   [types.MUTATE_SET_SESSION]: (state) => {
-    // console.log( ' MUTATE_SET_SESSION ');
+
     if (localStorage.getItem("token")) {
       try {
         let session_temp = JWT.decode(localStorage.getItem("token"));
@@ -26,6 +28,8 @@ const mutations = {
         // console.log( session_temp.exp );
         if (session_temp.exp > time_temp) {
           state.session = session_temp;
+          Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+
         } else {
           localStorage.removeItem('token');
         }
@@ -35,15 +39,18 @@ const mutations = {
   },
 
   [types.MUTATE_UPDATE_SESSION]: (state, payload) => {
+    localStorage.removeItem("token");
+    Vue.http.headers.common['Authorization'] = 'Bearer ' + payload.token  ;
+    
     localStorage.setItem("token", payload.token);
     state.session = JWT.decode(payload.token);
   },
-  [types.MUTATE_UPDATE_SESSION]: (state, payload) => {
-    localStorage.setItem("token", payload.token);
-    state.session = JWT.decode(payload.token);
-  },
+
+
   [types.MUTATE_DELETE_SESSION]: (state, payload) => {
     localStorage.removeItem("token");
+    Vue.http.headers.common['Authorization'] = 'Bearer '  ;
+
     state.session = {
       id: null,
     }
