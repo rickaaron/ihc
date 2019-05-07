@@ -26,6 +26,12 @@ exports.get_patient = (f_id_user, id_patient) => {
 
 
 
+exports.add_quote = (data) => {
+  return knex('t_dat_patients').insert(data).then((new_id_patient) => {
+    console.log(new_id_patient);
+    return new_id_patient[0];
+  })
+}
 
 
 
