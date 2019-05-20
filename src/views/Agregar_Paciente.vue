@@ -31,8 +31,10 @@
         </div>
 
         <div v-if=" progress == 12.5 ">
+
           <div class="columns">
             <div class="column is-6">
+
               <div class="field">
                 <label class="label ">Nombres</label>
                 <div class="control">
@@ -65,6 +67,7 @@
 
             </div>
             <div class="column is-6">
+
               <div class="field">
                 <label class="label">Edad </label>
                 <div class="control">
@@ -96,6 +99,8 @@
                   <input class="input" type="text" placeholder="Nombre" v-model=" patient.children  ">
                 </div>
               </div>
+
+
             </div>
 
           </div>
@@ -107,6 +112,7 @@
         <div v-if=" progress == 37.5 ">
           <div class="columns">
             <div class="column is-6">
+
               <div class="field">
                 <label class="label"> Dirección </label>
                 <div class="control">
@@ -131,8 +137,11 @@
                   <input class="input" type="text" placeholder="Nombre" v-model=" patient.city  ">
                 </div>
               </div>
+
+
             </div>
             <div class="column is-6">
+
               <div class="field">
                 <label class="label"> Telefono </label>
                 <div class="control">
@@ -157,12 +166,15 @@
                   <input class="input" type="text" placeholder="Nombre" v-model=" patient.email ">
                 </div>
               </div>
+
+
             </div>
           </div>
 
         </div>
 
         <div v-if=" progress == 62.5 ">
+
           <div class="field">
             <label class="label"> Historial clinico</label>
             <div class="control">
@@ -266,6 +278,8 @@
           }
         ]
 
+
+
       })
     },
     methods: {
@@ -304,6 +318,7 @@
 
         validate.async(this.form_data, constraints).then(
           data => {
+
             this.$http.post("signin", data).then(
               response => {
                 this.is_loading = false;
@@ -318,11 +333,15 @@
               this.$modal_error.show(errors.data.errors);
               this.is_loading = false;
             });
+
+
           },
         ).catch(errors => {
           this.$modal_error.show(errors);
           this.is_loading = false;
         });
+
+        
       },
 
       next_info: function () {
@@ -556,13 +575,13 @@
             this.id_patient = response.data.id_patient;
             // this.is_loading = false;
             // this.$store.commit(types.MUTATE_UPDATE_SESSION, response.data);
-
-
+ 
           }
         ).catch(errors => {
           // this.$modal_error.show(errors.data.errors);
         });
       },
+      
       prev_info: function () {
         this.progress -= 25;
       }

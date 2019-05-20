@@ -10,13 +10,13 @@ import Dashboard from './views/Dashboard.vue'
 
 
 
-import Paciente from './views/Paciente.vue'
+import Paciente from './views/Ver_Paciente.vue'
 import AgregarPaciente from './views/Agregar_Paciente.vue'
 
-import Cita from './views/Cita.vue'
+import Ver_Cita from './views/Ver_Cita.vue'
 import AgregarCita from './views/Agregar_Cita.vue'
 
-import Tratamiento from './views/Tratamiento.vue'
+import Tratamiento from './views/Ver_Tratamiento.vue'
 import AgregarReceta from './views/Agregar_Receta.vue'
 
 import Expediente from './views/Expediente.vue'
@@ -24,6 +24,7 @@ import Expediente from './views/Expediente.vue'
 import BuscarFolio from './views/Buscar_Folio.vue'
 
 import VerCitas from './views/Ver_Citas.vue'
+
 import VerExpediente from './views/Ver_Expediente.vue'
 
 
@@ -78,8 +79,8 @@ export default new Router({
     },
     {
       path: '/cita/:id',
-      name: 'cita',
-      component: Cita
+      name: 'ver_cita',
+      component: Ver_Cita
     },
     {
       path: '/agregar-cita/:id_patient',
