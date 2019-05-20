@@ -5,22 +5,23 @@
         <div class=" box ">
 
           <h3 class=" title is-2 has-text-centered "> Tratamiento </h3>
-          <h3 class=" title is-4 has-text-centered "> Paciente: Alan Ramirez </h3>
+          <h3 class=" title is-4 has-text-centered "> Paciente: {{ treatment.name  }} </h3>
 
           <h4 class=" subtitle is-5 is-marginless "> Sintomas : </h4>
           <p>
-            {{ paciente.sintomas}}
+            {{ treatment.symptom}}
           </p>
           <br>
           <h4 class=" subtitle is-5 is-marginless"> Tratamiento: </h4>
           <p>
-            {{ paciente.tratamiento}}
+            {{ treatment.treatment}}
           </p>
           <br>
-          <h4 class=" subtitle is-5 is-marginless "> Receta: </h4>
+
+          <!-- <h4 class=" subtitle is-5 is-marginless "> Receta: </h4>
           <p>
-            {{ paciente.receta}}
-          </p>
+            {{ treatment.receta}}
+          </p> -->
 
         </div>
 
@@ -34,13 +35,33 @@
   export default {
     data() {
       return ({
+        treatment: {},
         paciente: {
           sintomas: 'Dientes chuecos ',
           tratamiento: ' Radiografia, braquets, endodoncia ',
           receta: 'Paracettamol 10 tabletas, 1 cada 12 horas. Diprofenaco 10 tabletas, 1 cada 12 horas.',
         }
       })
+    },
+    methods: {
+      get_treatment(id_treatment) {
+        this.$http.get("user/treatment", {
+          params: {
+            id_treatment
+          }
+        }).then(
+          response => {
+            this.treatment = response.data;
+          }
+        ).catch(errors => {});
+      }
+
+    },
+    created() {
+      this.get_treatment(this.$route.params.id);
     }
+
+
   }
 
 </script>

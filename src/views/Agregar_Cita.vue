@@ -73,9 +73,11 @@
   export default {
     data() {
       return ({
+        is_loading: false,
         patient: {},
         quote: {
-          date: '',
+          f_id_patient: '',
+          date: '2019-05-08',
           hour: 1,
           period: 'AM',
           min: 0,
@@ -163,13 +165,15 @@
             value: 'AM',
           }
         ]
+
       })
     },
     methods: {
       get_date: function () {
         let temp_date = new Date()
-        this.quote.fecha = temp_date.getDate() + '-' + temp_date.getMonth() + '-' + temp_date.getFullYear();
-        console.log(this.quote.fecha);
+        // 2019-05-08
+        this.quote.date = temp_date.getFullYear() + '-' + temp_date.getMonth() + '-' + temp_date.getDate();
+        console.log( this.quote.date );
       },
 
       add_quote: function (event) {
@@ -207,33 +211,51 @@
         validate.async(this.quote, constraints).then(
           data => {
             console.log(data)
-            // this.is_loading = false;
+            
+            this.$http.post("user/quote", this.quote ).then(
+              response => {
 
+                this.is_loading = false;
+
+                this.$router.push( { name: 'ver_cita', params: { id: response.body.id_quote } } )
+                // /cita/:id'
+                // this.id_patient = response.data.id_patient;
+                // this.$store.commit(types.MUTATE_UPDATE_SESSION, response.data);
+
+              }
+            ).catch(errors => {
+              // this.$modal_error.show(errors.data.errors);
+            });
           },
+
         ).catch(errors => {
           this.$modal_error.show(errors);
           this.is_loading = false;
         });
 
-      }
-    },
-    created() {
-      this.get_date();
+      },
 
-
-      this.$http.get("user/get-patient", {
+      get_patient( id_patient  ){
+        return this.$http.get("user/get-patient", {
         params: {
-          id_patient: this.$route.params.id_patient
+          id_patient 
         }
       }).then(
         response => {
-          this.patient = response.data.patient;
-          // this.is_loading = false;
-          // this.$store.commit(types.MUTATE_UPDATE_SESSION, response.data);
+          return response.data.patient; 
         }
-      ).catch(errors => {
-        // this.$modal_error.show(errors.data.errors);
+      ).catch(errors => { 
       });
+      }
+
+      
+    },
+    async mounted() {
+      // this.get_date();
+
+      this.quote['f_id_patient'] = this.$route.params.id_patient;
+
+      this.patient = await this.get_patient( this.$route.params.id_patient ); 
 
     },
 

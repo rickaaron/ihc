@@ -41,17 +41,10 @@
     methods: {
 
     },
-    mounted() {
+    created() {
       this.$store.commit(types.MUTATE_SET_SESSION);
 
-      this.$http.get('home').then(response => {
-        // get body data
-        console.log(response.data)
-      }, response => {
-        // error callback
-        console.log(response.data)
-
-      });
+       
     }
 
   }

@@ -53,14 +53,33 @@ exports.TemporalTokenSingin = (idUser, email) => {
 
 }
 
-exports.POST_ADD_PATIENT = (req, res) => {
-  req.body['f_id_user'] = req.user.id;
-  Mdl_User.add_patient(req.body).then( new_id => {
 
-    if ( new_id ) {
+
+exports.GET_USER_INFO = (req, res) => {
+  Mdl_User.get_user_info(req.user.id).then(quote => {
+    res.status(200).json(quote[0]);
+  })
+}
+
+
+exports.UPDATE_USER_INFO = (req, res) => {
+  Mdl_User.put_user_info(req.user.id , req.body  ).then( status => {
+    res.status(200).json(status[0]);
+  })
+}
+
+
+
+
+exports.POST_QUOTE = (req, res) => {
+  req.body['f_id_user'] = req.user.id;
+
+  Mdl_User.post_quote(req.body).then(id_quote => {
+
+    if (id_quote) {
 
       res.status(200).json({
-        id_patient: new_id
+        id_quote: id_quote[0],
       });
 
     } else {
@@ -73,26 +92,53 @@ exports.POST_ADD_PATIENT = (req, res) => {
   })
 
 }
-
-exports.GET_PATIENT = (req, res) => {
-  // req.body['f_id_user'] = req.user.id;
-  Mdl_User.get_patient( req.user.id,  req.query.id_patient).then( patient => {
-
-    if ( patient ) {
-
-      res.status(200).json({
-        patient
-      });
-
-    } else {
-      res.status(400).json({
-        errors: [
-          'Paciente no encontrado '
-        ]
-      });
-    }
-  }) 
+exports.GET_QUOTE = (req, res) => {
+  Mdl_User.get_quote(req.user.id, req.query.id_quote).then(quote => {
+    res.status(200).json(quote[0]);
+  })
 }
+exports.GET_QUOTES = (req, res) => {
+  Mdl_User.get_quotes(req.user.id, req.query.type).then(quotes => {
+    res.status(200).json(quotes);
+  })
+}
+
+exports.DELTE_QUOTE = (req, res) => {
+  Mdl_User.delete_quote(req.user.id, req.query.id, req.query.reason ).then(status => {
+    res.status(200).json(status);
+  })
+}
+
+
+
+exports.POST_TREATMENT = (req, res) => {
+
+  req.body['f_id_user'] = req.user.id;
+
+  Mdl_User.post_treatment(req.body).then(new_id_treatment => {
+    res.status(200).json(new_id_treatment);
+  })
+
+}
+exports.GET_TREATMENT = (req, res) => {
+  Mdl_User.get_treatment(req.user.id, req.query.id_treatment ).then( treatment => {
+    res.status(200).json(treatment[0]);
+  })
+}
+
+exports.GET_TREATMENTS = (req, res) => {
+  Mdl_User.get_treatments(req.user.id, req.query.type).then(treatments => {
+    res.status(200).json(treatments);
+  })
+}
+
+exports.DELTE_TREATMENT = (req, res) => {
+  Mdl_User.delete_treatment(req.user.id, req.query.id, req.query.reason).then(status => {
+    res.status(200).json(status);
+  })
+}
+
+
 
 
 
@@ -124,5 +170,63 @@ exports.POST_SINGIN = (req, res) => {
         ]
       });
     }
+  })
+}
+
+exports.GET_PATIENT = (req, res) => {
+  // req.body['f_id_user'] = req.user.id;
+  Mdl_User.get_patient(req.user.id, req.query.id_patient).then(patient => {
+
+    if (patient) {
+
+      res.status(200).json(patient[0]);
+
+    } else {
+      res.status(400).json({
+        errors: [
+          'Paciente no encontrado '
+        ]
+      });
+    }
+  })
+}
+exports.POST_ADD_PATIENT = (req, res) => {
+  req.body['f_id_user'] = req.user.id;
+  Mdl_User.add_patient(req.body).then(new_id => {
+
+    if (new_id) {
+
+      res.status(200).json({
+        id_patient: new_id
+      });
+
+    } else {
+      res.status(400).json({
+        errors: [
+          'Error en el registro'
+        ]
+      });
+    }
+  })
+
+}
+
+exports.GET_PATIENTS = (req, res) => {
+  // req.body['f_id_user'] = req.user.id;
+  Mdl_User.get_patients(req.user.id, req.query.type).then(patients => {
+    res.status(200).json(patients);
+  })
+}
+
+exports.DELETE_PATIENT = (req, res) => {
+  // req.body['f_id_user'] = req.user.id;
+  Mdl_User.delete_patient(req.user.id, req.query.id).then(status => {
+    res.status(200).json(status);
+  })
+}
+exports.DELETE_PATIENT_PERM = (req, res) => {
+  // req.body['f_id_user'] = req.user.id;
+  Mdl_User.delete_patient_perm(req.user.id, req.query.id).then(status => {
+    res.status(200).json(status);
   })
 }

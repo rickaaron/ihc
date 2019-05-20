@@ -18,32 +18,32 @@
     <hr>
 
 
-    <form action="" class=" columns " v-if=" option == 'datos'">
+    <form @submit=" update_info " class=" columns " v-if=" option == 'datos'">
       <div class="column is-6 ">
         <div class="field">
           <label class="label">Nombre(s)</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Nombre" v-model="  session.nombre  ">
+            <input class="input" type="text" placeholder="Nombre" v-model="  user.name  ">
           </div>
         </div>
 
         <div class="field">
           <label class="label"> Apellido paterno </label>
           <div class="control">
-            <input class="input" type="text" placeholder="Apellido paterno" v-model="  session.apellido_paterno  ">
+            <input class="input" type="text" placeholder="Apellido paterno" v-model="  user.lastname_1  ">
           </div>
         </div>
         <div class="field">
           <label class="label"> Apellido materno </label>
           <div class="control">
-            <input class="input" type="text" placeholder="Apellido materno" v-model="  session.apellido_materno  ">
+            <input class="input" type="text" placeholder="Apellido materno" v-model="  user.lastname_2  ">
           </div>
         </div>
 
         <div class="field">
           <label class="label">Correo</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Correo" v-model="  session.email  ">
+            <input class="input" type="text" placeholder="Correo" v-model="  user.email  ">
           </div>
         </div>
       </div>
@@ -51,26 +51,26 @@
         <div class="field">
           <label class="label"> RFC </label>
           <div class="control">
-            <input class="input" type="text" placeholder="RFC" v-model="  session.rfc  ">
+            <input class="input" type="text" placeholder="RFC" v-model="  user.rfc  ">
           </div>
         </div>
         <div class="field">
           <label class="label"> Dirección </label>
           <div class="control">
-            <input class="input" type="text" placeholder="Dirección" v-model="  session.direccion  ">
+            <input class="input" type="text" placeholder="Dirección" v-model="  user.direction  ">
           </div>
         </div>
         <div class="field">
           <label class="label"> Telefono </label>
           <div class="control">
-            <input class="input" type="text" placeholder="Telefono" v-model="  session.telefono  ">
+            <input class="input" type="text" placeholder="Telefono" v-model="  user.telephone  ">
           </div>
         </div>
 
         <div class="field">
           <label class="label"> &nbsp; </label>
           <div class="control">
-            <button class="button is-info is-fullwidth "> Guardar </button>
+            <button class="button is-info is-fullwidth  " :class=" { 'is-loading': is_loading }  " > Guardar </button>
           </div>
         </div>
       </div>
@@ -160,18 +160,126 @@
     data() {
       return ({
         option: 'none',
-        session: {
-          nombre: 'Ricardo',
-          apellido_paterno: 'Martinez',
-          apellido_materno: 'Alvarado',
-          email: 'ricardo@gmail.com',
-          rfc: 'ARASD123123dasd',
-          direccion: 'Valle colorado 232, Monterrey , Nuevo Leon, Mexico',
-          telefono: '899646689',
+        user: {},
+        is_loading: false,
 
-        }
       })
+    },
+    methods: {
+      get_user_info() {
+        this.$http.get("user/info").then(
+          response => {
+            this.user = response.body;
+          }
+        ).catch(errors => {});
+      },
+
+      update_info(event) {
+        event.preventDefault();
+        this.is_loading = true;
+        const constraints = {
+          name: {
+            presence: {
+              message: "Falta el nombre"
+            },
+            length: {
+              minimum: 3,
+              maximum: 30,
+              tooShort: "Nombre: Al menos 3 caracteres",
+              tooLong: "Nombre: Máximo 30 caracteres"
+            }
+          },
+          rfc: {
+            presence: {
+              message: "Falta el RFC"
+            },
+            length: {
+              minimum: 10,
+              maximum: 30,
+              tooShort: "RFC: Al menos 10 caracteres",
+              tooLong: "RFC: Máximo 30 caracteres"
+            }
+          },
+
+          lastname_1: {
+            presence: {
+              message: "Falta el apellido paterno"
+            },
+            length: {
+              minimum: 3,
+              maximum: 30,
+              tooShort: "Apellido paterno: Al menos 3 caracteres",
+              tooLong: "Apellido paterno: Máximo 30 caracteres"
+            }
+          },
+          lastname_2: {
+            presence: {
+              message: "Falta el Apellido materno"
+            },
+            length: {
+              minimum: 3,
+              maximum: 30,
+              tooShort: "Apellido materno: Al menos 3 caracteres",
+              tooLong: "Apellido materno: Máximo 30 caracteres"
+            }
+          },
+
+          direction: {
+            presence: {
+              message: "Falta la dirección"
+            },
+            length: {
+              minimum: 3,
+              maximum: 30,
+              tooShort: "Dirección: Al menos 3 caracteres",
+              tooLong: "Dirección: Máximo 30 caracteres"
+            }
+          },
+
+          telephone: {
+            presence: {
+              message: "Falta el telefono"
+            },
+            length: {
+              minimum: 8,
+              maximum: 14,
+              tooShort: "Telefono: Al menos 8 caracteres",
+              tooLong: "Telefono: Máximo 14 caracteres"
+            }
+          },
+          email: {
+            email: {
+              message: "Falta el correo"
+            }
+          },
+        };
+
+        validate.async(this.user, constraints).then(
+          data => {
+            this.$http.put("user/info", data).then(
+              response => {
+              this.is_loading = false;
+              }
+            ).catch(errors => {
+              // this.$modal_error.show(errors.data.errors);
+              // this.is_loading = false;
+            });
+          },
+        ).catch(errors => {
+          this.$modal_error.show(errors);
+          this.is_loading = false;
+        });
+
+
+
+
+      }
+    },
+    created() {
+      this.get_user_info();
     }
+
+
   }
 
 </script>
