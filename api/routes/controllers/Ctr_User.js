@@ -55,12 +55,12 @@ exports.TemporalTokenSingin = (idUser, email) => {
 
 
 
+// DATOS DEL USUARIO
 exports.GET_USER_INFO = (req, res) => {
   Mdl_User.get_user_info(req.user.id).then(quote => {
     res.status(200).json(quote[0]);
   })
 }
-
 
 exports.UPDATE_USER_INFO = (req, res) => {
   Mdl_User.put_user_info(req.user.id , req.body  ).then( status => {
@@ -68,6 +68,26 @@ exports.UPDATE_USER_INFO = (req, res) => {
   })
 }
 
+
+
+exports.POST_USER_SPECIAL = (req, res) => {
+  Mdl_User.post_user_special(req.user.id,req.body.name ).then( id_special => {
+    res.status(200).json(id_special[0]  );
+  })
+}
+
+exports.GET_USER_SPECIAL = (req, res) => {
+  Mdl_User.get_user_special(req.user.id).then(specials => {
+    // console.log( 'speciales:' , specials )
+    res.status(200).json(specials);
+  })
+}
+
+exports.DELETE_SPECIAL = (req, res) => { 
+  Mdl_User.delete_user_special(req.user.id, req.query.id).then(status => {
+    res.status(200).json(status);
+  })
+}
 
 
 

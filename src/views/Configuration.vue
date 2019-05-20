@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3 class=" title is-4  ">Configuración</h3>
+
     <div class="level">
       <div class="level-item">
         <button class="button " @click=" option = 'datos' " :class=" { 'is-info':  option == 'datos' } ">
@@ -70,78 +71,62 @@
         <div class="field">
           <label class="label"> &nbsp; </label>
           <div class="control">
-            <button class="button is-info is-fullwidth  " :class=" { 'is-loading': is_loading }  " > Guardar </button>
+            <button class="button is-info is-fullwidth  " :class=" { 'is-loading': is_loading }  "> Guardar </button>
           </div>
         </div>
       </div>
 
     </form>
 
-    <div v-if="option== 'esp'">
+    <div v-if="option== 'esp' ">
       <div class="level">
         <div class="level-left">
           <h3 class=" title is-4  ">Especialidades </h3>
 
         </div>
         <div class="level-rigth">
-          <button class=" button is-info  ">
+          <button class=" button is-info " @click=" is_visible = true ">
             Agregar
           </button>
         </div>
       </div>
-      <div class="level">
+
+
+      <div class="level" v-for=" ( special, index  ) in user_specials  " :key=" index ">
         <div class="level-left">
           <p>
-            <strong> Prostodoncia </strong>
+            <strong> {{ special.specialtie }} </strong>
           </p>
 
         </div>
         <div class="level-rigth">
+
           <div class="field is-grouped">
             <p class="control">
-              <router-link to="/Signin" class="button is-danger ">
+
+              <button class="button is-danger" @click=" delete_special( index  )  ">
                 <fa-icon icon='trash'></fa-icon>
-              </router-link>
+              </button>
+
             </p>
           </div>
+
         </div>
       </div>
-      <div class="level">
-        <div class="level-left">
-          <p>
-            <strong> Ortodoncia </strong>
-          </p>
 
-        </div>
-        <div class="level-rigth">
-          <div class="field is-grouped">
-            <p class="control">
-              <router-link to="/Signin" class="button is-danger ">
-                <fa-icon icon='trash'></fa-icon>
-              </router-link>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="level">
-        <div class="level-left">
-          <p>
-            <strong> Endodoncia </strong>
-          </p>
-
-        </div>
-        <div class="level-rigth">
-          <div class="field is-grouped">
-            <p class="control">
-              <router-link to="/Signin" class="button is-danger ">
-                <fa-icon icon='trash'></fa-icon>
-              </router-link>
-            </p>
-          </div>
-        </div>
+      <div v-if=" user_specials.length == 0   && option == 'esp'  " class=" has-text-centered ">
+        <img src="../assets/info.png" alt="" width="100">
+        <br>
+        Sin datos
+        <br>
+        <br>
+        <br>
       </div>
 
     </div>
+
+
+
     <div v-if=" option == 'none'  " class=" has-text-centered ">
       <img src="../assets/info.png" alt="" width="100">
       <br>
@@ -152,6 +137,51 @@
     </div>
 
 
+
+    <div class="modal" :class=" { 'is-active':is_visible == true}">
+      <div class="modal-background" @click=" hide() "></div>
+      <div class="modal-card">
+        <header class="modal-card-head has-text-centered has-background-info  ">
+          <p class="modal-card-title is-size-3 has-text-white">
+            <fa-icon :icon=' modal.icon '></fa-icon> {{ modal.title }}
+          </p>
+          <button class="delete" aria-label="close" @click=" hide() "></button>
+        </header>
+
+        <section class="modal-card-body">
+          <div class="columns is-multiline is-mobile ">
+            <div class="column is-full">
+              <div class="content">
+                <div class="field">
+                  <label class="label"> Nueva Especialidad </label>
+                  <div class="control">
+                    <input type="text" class="input" placeholder=" Nueva Especialidad " v-model=" special.name ">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="modal-card-foot  columns">
+          <div class="column">
+            <div class="level is-mobile ">
+              <div class="level-left ">
+                <button class="button is-rounded is-info " @click=" hide() ">Salir</button>
+
+              </div>
+              <div class="level-right">
+                <button class="button is-rounded is-success " @click=" post_special() ">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -159,9 +189,18 @@
   export default {
     data() {
       return ({
+        is_visible: false,
         option: 'none',
+        special: {
+          name: ''
+        },
+        modal: {
+          icon: 'send',
+          title: 'Agregar Especialidad '
+        },
         user: {},
         is_loading: false,
+        user_specials: [],
 
       })
     },
@@ -170,6 +209,13 @@
         this.$http.get("user/info").then(
           response => {
             this.user = response.body;
+          }
+        ).catch(errors => {});
+      },
+      get_user_special() {
+        this.$http.get("user/special").then(
+          response => {
+            this.user_specials = response.body;
           }
         ).catch(errors => {});
       },
@@ -258,12 +304,9 @@
           data => {
             this.$http.put("user/info", data).then(
               response => {
-              this.is_loading = false;
+                this.is_loading = false;
               }
-            ).catch(errors => {
-              // this.$modal_error.show(errors.data.errors);
-              // this.is_loading = false;
-            });
+            ).catch(errors => {});
           },
         ).catch(errors => {
           this.$modal_error.show(errors);
@@ -273,10 +316,73 @@
 
 
 
-      }
+      },
+
+      delete_special(index) {
+
+        this.$http.delete("user/special", {
+          params: {
+            id: this.user_specials[index].id_spe,
+          }
+        }).then(
+          response => {
+            if (response.body == 1) {
+              this.user_specials.splice(index, 1);
+            }
+          }
+        ).catch(errors => {});
+      },
+
+      hide() {
+        this.is_visible = false;
+      },
+
+      post_special: function (data) {
+        this.is_loading = true;
+        const constraints = {
+          name: {
+            presence: {
+              message: "Falta el nombre"
+            },
+            length: {
+              minimum: 3,
+              maximum: 30,
+              tooShort: "Nombre: Al menos 3 caracteres",
+              tooLong: "Nombre: Máximo 30 caracteres"
+            }
+          },
+        }
+        validate.async(this.special, constraints).then(
+          data => {
+
+            this.$http.post("user/special", data).then(
+
+              response => {
+                this.is_loading = false;
+                this.user_specials.push({
+                  id_spe: response.body,
+                  specialtie: data.name
+                });
+                this.special.name = '';
+                this.hide();
+              }
+            ).catch(errors => {
+              // this.$modal_error.show(errors.data.errors);
+              this.is_loading = false;
+            });
+
+          },
+        ).catch(errors => {
+          this.$modal_error.show(errors);
+          this.is_loading = false;
+        });
+      },
+
+
     },
     created() {
       this.get_user_info();
+      this.get_user_special();
     }
 
 

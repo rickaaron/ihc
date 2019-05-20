@@ -11,6 +11,14 @@ const Ctr_User = require('./controllers/Ctr_User');
 router.get('/info', Ctr_User.GET_USER_INFO ); 
 router.put('/info', Ctr_User.UPDATE_USER_INFO ); 
 
+router.get('/special', Ctr_User.GET_USER_SPECIAL ); 
+router.post('/special', Ctr_User.POST_USER_SPECIAL ); 
+router.delete('/special', Ctr_User.DELETE_SPECIAL ); 
+
+
+
+
+
 
 router.post('/add-patient', Ctr_User.POST_ADD_PATIENT );
 router.get('/get-patient', Ctr_User.GET_PATIENT ); 

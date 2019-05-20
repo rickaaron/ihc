@@ -12,17 +12,36 @@ exports.get_user_info = (id_user) => {
   }).limit(1);
 }
 
-
-
-
-exports.put_user_info = (id_user, data ) => {
+exports.put_user_info = (id_user, data) => {
   return knex.select().from('t_dat_users').where({
     id_user,
   }).update(data).limit(1);
 }
 
+exports.get_user_special = (f_id_user) => {
+  return knex.select().from('t_dat_specialties').where({
+    f_id_user,
+  });
+}
 
 
+
+
+exports.post_user_special = (f_id_user, specialtie) => {
+  return knex('t_dat_specialties').insert({
+    f_id_user,
+    specialtie
+  });
+}
+
+
+
+exports.delete_user_special = (f_id_user, id_spe) => {
+  return knex('t_dat_specialties').where({
+    f_id_user,
+    id_spe,
+  }).del().limit(1);
+}
 
 
 
@@ -117,7 +136,7 @@ exports.post_treatment = (data) => {
   // console.log( data  );
   return knex('t_dat_treatments').insert(data);
 }
-exports.delete_treatment = (f_id_user, id_treatment, reason ) => {
+exports.delete_treatment = (f_id_user, id_treatment, reason) => {
   return knex('t_dat_treatments').where({
     f_id_user,
     id_treatment,
@@ -126,4 +145,3 @@ exports.delete_treatment = (f_id_user, id_treatment, reason ) => {
     reason
   }).limit(1);
 }
-
