@@ -14,12 +14,17 @@
 
         <div class="field has-addons has-addons-centered ">
           <div class="control">
-            <input class="input is-rounded " type="text" placeholder="#Folio">
+            <input class="input is-rounded " type="text" placeholder="#Folio" v-model=" uuid ">
           </div>
-          <div class="control">
-            <a class="button is-info is-rounded ">
+          <div class="control"> 
+
+            <router-link :to="{ name: 'buscar-folio', params: { id: uuid }}" class="button is-info is-rounded ">
+
               <fa-icon icon='search'></fa-icon>
-            </a>
+
+            </router-link>
+            
+ 
           </div>
         </div>
       </div>
@@ -33,6 +38,11 @@
 
   export default {
     name: 'home', 
+    data(){
+      return( {
+        uuid: '',
+      }  )
+    }
   }
 
 </script>

@@ -69,8 +69,7 @@
 <script>
   import PacientesComp from './Pacientes.vue'
   import CitasComp from './Citas.vue'
-  import TratamientosComp from './Tratamientos.vue'
-  import ExpedienteComp from './Expediente.vue'
+  import TratamientosComp from './Tratamientos.vue' 
   import ConfigComp from './Configuration.vue'
   import {
     watch
@@ -80,8 +79,7 @@
     components: {
       PacientesComp,
       CitasComp,
-      TratamientosComp,
-      ExpedienteComp,
+      TratamientosComp, 
       ConfigComp,
     },
     data() {

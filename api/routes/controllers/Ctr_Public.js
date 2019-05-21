@@ -63,7 +63,7 @@ exports.POST_LOGIN = (req, res) => {
 
     if (is_registred) {
 
-      Mdl_Public.login(req.body.email, req.body.password ).then(user => {
+      Mdl_Public.login(req.body.email, req.body.password).then(user => {
         // console.log( user )
 
         if (user.length > 0) {
@@ -90,4 +90,32 @@ exports.POST_LOGIN = (req, res) => {
       });
     }
   })
+}
+
+
+exports.GET_PATIENT = (req, res) => {
+
+  Mdl_Public.get_patient(req.query.uuid ).then(patient => {
+    res.status(200).json(patient[0]);
+  });
+}
+exports.GET_DOCTOR = (req, res) => {
+
+  Mdl_Public.get_doctor(req.query.id_doctor ).then(patient => {
+    res.status(200).json(patient[0]);
+  });
+}
+
+
+exports.GET_QUOTES = (req, res) => {
+
+  Mdl_Public.get_quotes(req.query.id_patient ).then( quotes => {
+    res.status(200).json(quotes);
+  });
+}
+exports.GET_TREATMENTS = (req, res) => {
+
+  Mdl_Public.get_treatments(req.query.id_patient ).then( quotes => {
+    res.status(200).json(quotes);
+  });
 }

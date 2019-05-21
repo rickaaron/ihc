@@ -3,7 +3,7 @@
     <h3 class=" title is-4 ">Citas</h3>
     <hr>
 
-    <div class="level">
+    <div class="level is-mobile ">
       <div class="level-item">
         <button class=" button  " :class=" { 'is-info': option == 'activas' } "
           @click=" get_quotes('active') ,  option = 'activas'  ">
@@ -23,13 +23,13 @@
 
       <ul>
         <li v-for=" (quote,index) in quotes " :key="index ">
-          <div class="level">
+          <div class="level is-mobile ">
             <div class="level-left">
               {{quote.date}} - {{quote.hour}}
             </div>
 
             <div class="level-item">
-              <strong> Paciente : {{ quote.name}} </strong>
+              <strong> {{ quote.name}} </strong>
             </div>
 
             <div class="level-rigth" v-if=" option == 'activas' ">

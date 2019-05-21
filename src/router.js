@@ -18,18 +18,16 @@ import AgregarCita from './views/Agregar_Cita.vue'
 
 import Tratamiento from './views/Ver_Tratamiento.vue'
 import AgregarReceta from './views/Agregar_Receta.vue'
-
-import Expediente from './views/Expediente.vue'
-
-import BuscarFolio from './views/Buscar_Folio.vue'
-
-import VerCitas from './views/Ver_Citas.vue'
-
-import VerExpediente from './views/Ver_Expediente.vue'
-
-
+import VerExpediente from './views/Ver_Paciente_Expediente.vue'
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
+
+// Paciente
+import BuscarFolio from './views/paciente/Folio.vue'
+import Expediente from './views/paciente/Expediente.vue'
+import VerCitas from './views/paciente/Citas.vue'
+
+
 
 import Modals from './views/Modals.vue'
 
@@ -109,8 +107,8 @@ export default new Router({
       component: BuscarFolio
     },
     {
-      path: '/ver-citas/:id',
-      name: 'ver-citas',
+      path: '/citas/:id',
+      name: 'citas',
       component: VerCitas
     },
 

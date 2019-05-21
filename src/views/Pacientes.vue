@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="level">
+    <div class="level is-mobile ">
       <div class="level-left">
         <h3 class=" title is-4  ">Pacientes</h3>
       </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <hr>
-    <div class="level">
+    <div class="level is-mobile ">
       <div class="level-item">
         <button class=" button  " :class=" { 'is-info': option == 'normales' } "
           @click=" get_patients(  'active' ) , option = 'normales'   ">
@@ -29,7 +29,7 @@
     <ul v-if=" patients.length > 0  ">
 
       <li v-for=" (patient, index ) in patients " :key=" index">
-        <div class="level">
+        <div class="level is-mobile ">
           <div class="level-left">
             <p>
               <strong> {{ patient.name }} </strong>
@@ -66,6 +66,7 @@
       </li>
 
     </ul>
+    
     <div v-if=" patients.length == 0   && option != 'none'  "  class=" has-text-centered " > 
       <img src="../assets/info.png" alt="" width="100">
       <br>

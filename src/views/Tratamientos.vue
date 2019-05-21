@@ -2,7 +2,7 @@
   <div>
     <h3 class=" title is-4  ">Tratamientos</h3>
     <hr>
-    <div class="level">
+    <div class="level is-mobile ">
       <div class="level-item">
         <button class=" button  " :class=" { 'is-info': option == 'activos' } "
           @click=" get_treatments('active') , option = 'activos'  ">
@@ -21,7 +21,7 @@
       <ul>
 
         <li v-for="  ( treatment, index  )  in  treatments " :key="index">
-          <div class="level">
+          <div class="level is-mobile ">
             <div class="level-left">
               <p>
                 Folio: <strong> CI-{{ treatment.id_treatment }} </strong> , Paciente: <strong> {{ treatment.name  }}

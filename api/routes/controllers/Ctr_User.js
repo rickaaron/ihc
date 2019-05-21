@@ -1,12 +1,10 @@
 const Token = require('../heplers/token');
-var validate = require('../heplers/validate');
+// var validate = require('../heplers/validate');
 const Mdl_User = require('../models/Mdl_User')
 
-const bcrypt = require('bcrypt');
 
-
-var path = require('path');
 var uuid = require('uuid');
+var nanoid = require('nanoid')
 
 
 
@@ -212,6 +210,8 @@ exports.GET_PATIENT = (req, res) => {
 }
 exports.POST_ADD_PATIENT = (req, res) => {
   req.body['f_id_user'] = req.user.id;
+  req.body['uuid'] = nanoid(10);
+   
   Mdl_User.add_patient(req.body).then(new_id => {
 
     if (new_id) {
@@ -224,6 +224,22 @@ exports.POST_ADD_PATIENT = (req, res) => {
       res.status(400).json({
         errors: [
           'Error en el registro'
+        ]
+      });
+    }
+  })
+
+}
+exports.UPDATE_PATIENT = (req, res) => {
+  req.body['f_id_user'] = req.user.id;
+
+  Mdl_User.update_patient(req.body).then(update => {
+    if (update) {
+      res.status(200).json( update );
+    } else {
+      res.status(400).json({
+        errors: [
+          'Error al actualizar '
         ]
       });
     }
@@ -250,3 +266,12 @@ exports.DELETE_PATIENT_PERM = (req, res) => {
     res.status(200).json(status);
   })
 }
+
+
+
+exports.GET_PATIENT_TREATMENTS = (req, res) => {
+  Mdl_User.get_patient_treatments( req.query.id_patient ).then(treatments => {
+    res.status(200).json(treatments);
+  })
+}
+

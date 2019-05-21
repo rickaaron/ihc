@@ -15,14 +15,18 @@ router.get('/special', Ctr_User.GET_USER_SPECIAL );
 router.post('/special', Ctr_User.POST_USER_SPECIAL ); 
 router.delete('/special', Ctr_User.DELETE_SPECIAL ); 
 
+router.get('/patient/treatments', Ctr_User.GET_PATIENT_TREATMENTS ); 
 
 
 
 
 
 router.post('/add-patient', Ctr_User.POST_ADD_PATIENT );
+router.put('/patient', Ctr_User.UPDATE_PATIENT );
 router.get('/get-patient', Ctr_User.GET_PATIENT ); 
 router.get('/get-patients', Ctr_User.GET_PATIENTS ); 
+
+
 
 
 
