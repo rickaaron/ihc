@@ -17,7 +17,6 @@
               Atención personalizada con altos estándares de calidad, permite que unos de nuestros especialistas hagan
               una valoración y sugerir el mejor curso de acción para lograr tu mejor sonrisa.
             </p>
- 
           </div>
         </div>
 

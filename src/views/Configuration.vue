@@ -2,7 +2,7 @@
   <div>
     <h3 class=" title is-4  ">Configuración</h3>
 
-    <div class="level">
+    <div class="level is-mobile ">
       <div class="level-item">
         <button class="button " @click=" option = 'datos' " :class=" { 'is-info':  option == 'datos' } ">
           Datos personales
@@ -79,7 +79,7 @@
     </form>
 
     <div v-if="option== 'esp' ">
-      <div class="level">
+      <div class="level is-mobile ">
         <div class="level-left">
           <h3 class=" title is-4  ">Especialidades </h3>
 
@@ -92,7 +92,7 @@
       </div>
 
 
-      <div class="level" v-for=" ( special, index  ) in user_specials  " :key=" index ">
+      <div class="level is-mobile" v-for=" ( special, index  ) in user_specials  " :key=" index ">
         <div class="level-left">
           <p>
             <strong> {{ special.specialtie }} </strong>

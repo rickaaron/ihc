@@ -44,10 +44,10 @@ Vue.http.options.root = 'http://localhost:3000/api/';
 //       return response;
 //   }; 
 // });
-Vue.http.interceptors.push(function(request) {
-  console.log( request )
-  return function(response) {
-    console.log( response )
+Vue.http.interceptors.push(function (request) {
+  console.log(request)
+  return function (response) {
+    console.log(response)
   };
 
 
@@ -57,7 +57,12 @@ Vue.http.interceptors.push(function(request) {
 
 Vue.component('fa-icon', FontAwesomeIcon)
 Vue.config.productionTip = true;
+
 window.validate = require("validate.js");
+
+
+window.moment = require('moment');
+
 window.validate.async.options = {
   format: "flat",
   fullMessages: false

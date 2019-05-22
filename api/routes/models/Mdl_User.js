@@ -52,7 +52,13 @@ exports.add_patient = (data) => {
     return new_id_patient[0];
   })
 }
-
+exports.update_patient = (data) => {
+  return knex('t_dat_patients').where({
+    id_patient: data.id_patient,
+    f_id_user: data.f_id_user
+  }).update(data).limit(1);
+   
+}
 
 exports.get_patient = (f_id_user, id_patient) => {
 
@@ -122,6 +128,14 @@ exports.get_treatments = (id_user, status) => {
   });
 }
 
+
+exports.get_patient_treatments = ( id_patient ) => {
+  return knex.select().from('v_cat_tratments').where({
+    id_patient,
+    status: 'active',
+  });
+}
+ 
 
 exports.get_treatment = (id_user, id_treatment) => {
   return knex.select().from('v_cat_tratments').where({

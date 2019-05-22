@@ -232,7 +232,8 @@
   export default {
     data() {
       return ({
-        progress: 62.5,
+        progress: 12.5,
+        // progress: 62.5,
         id_patient: null,
         patient: {
           name: 'Arturo Ramirez',
@@ -241,7 +242,7 @@
           sex: 'indefinido',
           age: 18,
           birthdate: '2019-05-03',
-          civil_status: 'Soltero',
+          civil_status: 'soltero',
           children: 2,
           // seccion2
           direction: 'Nuevo Leon, Mexico',
@@ -262,19 +263,23 @@
           {
             name: 'Mujer',
             value: 'Mujer',
+          },
+          {
+            name: 'Indefinido',
+            value: 'indefinido',
           }
         ],
         civil_status: [{
             name: 'Casado',
-            value: 'Casado',
+            value: 'casado',
           },
           {
             name: 'Soltero',
-            value: 'Soltero',
+            value: 'soltero',
           },
           {
             name: 'Union Libre',
-            value: 'Union Libre',
+            value: 'libre',
           }
         ]
 

@@ -2,11 +2,12 @@
 
   <div>
     <div class="columns is-centered is-mobile ">
-      <div class="column is-6 ">
+      <div class="column is-6-desktop is-10-mobile  ">
         <div class=" box ">
 
           <h3 class=" title is-2 has-text-centered "> Agendar cita </h3>
           <h3 class=" title is-4 has-text-centered "> Paciente: {{ patient.name }} </h3>
+          <h3 class=" title is-6 has-text-centered "> Folio: {{ patient.uuid }} </h3>
           <form @submit=" add_quote ">
             <div class="field">
               <label class="label ">Fecha</label>
@@ -74,13 +75,15 @@
     data() {
       return ({
         is_loading: false,
-        patient: {},
+        patient: {
+          name: '',
+        },
         quote: {
           f_id_patient: '',
           date: '2019-05-08',
           hour: 1,
           period: 'AM',
-          min: 0,
+          min: '00',
         },
         horas: [{
             name: '1:00',
@@ -133,27 +136,27 @@
         ],
         minutos: [{
             name: '00',
-            value: 0,
+            value:'00',
           },
           {
             name: '10',
-            value: 10,
+            value: '10',
           },
           {
             name: '20',
-            value: 20,
+            value: '20',
           },
           {
             name: '30',
-            value: 30,
+            value: '30',
           },
           {
             name: '40',
-            value: 40,
+            value: '40',
           },
           {
             name: '50',
-            value: 50,
+            value: '50',
           },
         ],
         tipos: [{
@@ -217,10 +220,7 @@
 
                 this.is_loading = false;
 
-                this.$router.push( { name: 'ver_cita', params: { id: response.body.id_quote } } )
-                // /cita/:id'
-                // this.id_patient = response.data.id_patient;
-                // this.$store.commit(types.MUTATE_UPDATE_SESSION, response.data);
+                this.$router.push( { name: 'ver_cita', params: { id: response.body.id_quote } } ) 
 
               }
             ).catch(errors => {
@@ -242,7 +242,7 @@
         }
       }).then(
         response => {
-          return response.data.patient; 
+          return response.data; 
         }
       ).catch(errors => { 
       });
