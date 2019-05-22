@@ -42,9 +42,9 @@
       return ({
         is_loading: false,
         form_data: {
-          name: 'ricardo',
-          email: 'ricardoaaron_@hotmail.com',
-          password: 'qweqweqwe',
+          name: ' ',
+          email: ' ',
+          password: ' ',
         }
       })
     },
