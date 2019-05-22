@@ -34,8 +34,8 @@
       return ({
         is_loading: false,
         form_data: {
-          email: 'ricardoaaron_@hotmail.com',
-          password: 'qweqweqwe',
+          email: '',
+          password: '',
         }
       })
     },
