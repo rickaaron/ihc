@@ -497,17 +497,17 @@
                   tooLong: "Tel: Máximo 12 digitos"
                 }
               },
-              office: {
-                presence: {
-                  message: "Falta el telefono de oficina "
-                },
-                length: {
-                  minimum: 8,
-                  maximum: 12,
-                  tooShort: "Tel.Oficina: Al menos 8 digitos",
-                  tooLong: "Tel.Oficina: Máximo 12 digitos"
-                }
-              },
+              // office: {
+              //   presence: {
+              //     message: "Falta el telefono de oficina "
+              //   },
+              //   length: {
+              //     minimum: 8,
+              //     maximum: 12,
+              //     tooShort: "Tel.Oficina: Al menos 8 digitos",
+              //     tooLong: "Tel.Oficina: Máximo 12 digitos"
+              //   }
+              // },
               cellphone: {
                 presence: {
                   message: "Falta el numero celular"

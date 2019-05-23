@@ -48,6 +48,9 @@
               </div>
             </div>
           </div>
+          <p v-if=" option == 'eliminados' "  >
+            {{treatment.reason }}
+          </p>
           <hr>
         </li>
       </ul>
