@@ -11,25 +11,8 @@ exports.check_email = (email) => {
   })
 }
 
-exports.new_user = ({
-  name,
-  email,
-  password
-}) => {
-  return knex('t_dat_users').insert({
-    name,
-    email,
-    password
-  }).then((rows) => {
-    console.log(rows);
-    return rows;
-    if (rows.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  })
-
+exports.new_user = ( data ) => {
+  return knex('t_dat_users').insert(data );
 }
 
 

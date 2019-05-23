@@ -220,7 +220,7 @@
 
                 this.is_loading = false;
 
-                this.$router.push( { name: 'ver_cita', params: { id: response.body.id_quote } } ) 
+                this.$router.push( { name: 'Dashboard' });
 
               }
             ).catch(errors => {
