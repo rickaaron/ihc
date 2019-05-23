@@ -42,9 +42,9 @@
       return ({
         is_loading: false,
         form_data: {
-          name: ' ',
-          email: ' ',
-          password: ' ',
+          name: '',
+          email: '',
+          password: '',
         }
       })
     },
