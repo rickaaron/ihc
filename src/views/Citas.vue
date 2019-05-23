@@ -54,6 +54,10 @@
               </div>
             </div>
           </div>
+          <p v-if=" option == 'eliminadas'  " >
+            <strong> Razon: </strong> {{ quote.reason}}
+          </p>
+
           <hr>
         </li>
 

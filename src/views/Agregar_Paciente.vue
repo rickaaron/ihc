@@ -44,13 +44,13 @@
               <div class="field">
                 <label class="label ">Apellido Paterno </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.lastname_1 ">
+                  <input class="input" type="text" placeholder="Primer apellido" v-model=" patient.lastname_1 ">
                 </div>
               </div>
               <div class="field">
                 <label class="label">Apellido Materno </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.lastname_2 ">
+                  <input class="input" type="text" placeholder="Segundo apellido" v-model=" patient.lastname_2 ">
                 </div>
               </div>
               <div class="field">
@@ -71,13 +71,13 @@
               <div class="field">
                 <label class="label">Edad </label>
                 <div class="control">
-                  <input class="input" type="number" min="1" max="200" placeholder="Nombre" v-model=" patient.age ">
+                  <input class="input" type="number" min="1" max="200" v-model=" patient.age ">
                 </div>
               </div>
               <div class="field">
                 <label class="label"> Fecha de nacimiento </label>
                 <div class="control">
-                  <input class="input" type="date" placeholder="Nombre" v-model=" patient.birthdate  ">
+                  <input class="input" type="date" placeholder="Fecha de nacimento" v-model=" patient.birthdate  ">
                 </div>
               </div>
               <div class="field">
@@ -96,7 +96,7 @@
               <div class="field">
                 <label class="label"> Nuero de hijos </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.children  ">
+                  <input class="input" type="text" placeholder="Hijos" v-model=" patient.children  ">
                 </div>
               </div>
 
@@ -116,25 +116,25 @@
               <div class="field">
                 <label class="label"> Dirección </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.direction  ">
+                  <input class="input" type="text" placeholder="Dirección" v-model=" patient.direction  ">
                 </div>
               </div>
               <div class="field">
                 <label class="label"> Colonia </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.colony  ">
+                  <input class="input" type="text" placeholder="Colonia" v-model=" patient.colony  ">
                 </div>
               </div>
               <div class="field">
                 <label class="label"> Código postal </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.cp  ">
+                  <input class="input" type="text" placeholder="Código postal" v-model=" patient.cp  ">
                 </div>
               </div>
               <div class="field">
                 <label class="label"> Ciudad </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.city  ">
+                  <input class="input" type="text" placeholder="Ciudad" v-model=" patient.city  ">
                 </div>
               </div>
 
@@ -145,25 +145,25 @@
               <div class="field">
                 <label class="label"> Telefono </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.telephone  ">
+                  <input class="input" type="text" placeholder="Telefono" v-model=" patient.telephone  ">
                 </div>
               </div>
               <div class="field">
-                <label class="label"> Oficina </label>
+                <label class="label"> Tel.Oficina </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.office  ">
+                  <input class="input" type="text" placeholder="Tel.Oficina" v-model=" patient.office  ">
                 </div>
               </div>
               <div class="field">
                 <label class="label"> Celular </label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.cellphone  ">
+                  <input class="input" type="text" placeholder="Celular" v-model=" patient.cellphone  ">
                 </div>
               </div>
               <div class="field">
                 <label class="label">E-Mail</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Nombre" v-model=" patient.email ">
+                  <input class="input" type="text" placeholder="example@gmail.com" v-model=" patient.email ">
                 </div>
               </div>
 
@@ -240,7 +240,7 @@
           lastname_1: '',
           lastname_2: '',
           sex: '',
-          age: 5,
+          age: 4,
           birthdate: '',
           civil_status: '',
           children: 0,
@@ -407,11 +407,11 @@
                 numericality: {
                   onlyInteger: true,
                   greaterThan: 0,
-                  lessThanOrEqualTo: 30,
-                  even: true,
-                  notGreaterThan: "Ingresa una fecha nacimiento"
+                  lessThanOrEqualTo: 200, 
+                  notGreaterThan: "Falta la edad"
                 }
               },
+
               birthdate: {
                 datetime: {
                   dateOnly: true,
@@ -429,18 +429,7 @@
                   tooLong: "Estado civil: Máximo 30 caracteres"
                 }
               },
-              age: {
-                presence: {
-                  message: "Falta la edad"
-                },
-                numericality: {
-                  onlyInteger: true,
-                  greaterThanOrEqualTo: 0,
-                  lessThanOrEqualTo: 200,
-                  even: true,
-                  notGreaterThanOrEqual: "Ingresa una fecha d"
-                }
-              },
+               
             };
             break;
           case 37.5:

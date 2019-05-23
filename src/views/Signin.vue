@@ -45,6 +45,11 @@
           name: '',
           email: '',
           password: '',
+          lastname_1: '',
+          lastname_2: '',
+          direction: '',
+          telephone: '',
+          rfc: '',
         }
       })
     },
@@ -84,7 +89,7 @@
 
         validate.async(this.form_data, constraints).then(
           data => {
-            this.$http.post("signin", data).then(
+            this.$http.post("signin", this.form_data).then(
               response => {
                 this.is_loading = false;
                 this.$store.commit( types.MUTATE_UPDATE_SESSION , response.data );
