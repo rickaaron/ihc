@@ -1,7 +1,7 @@
 <template>
-  <div class="columns box ">
+  <div class="columns box has-background-primary ">
     <div class="column is-4 ">
-      <div class="panel">
+      <div class="panel has-background-white">
         <p class="panel-heading">
           Menu
         </p>

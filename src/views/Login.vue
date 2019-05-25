@@ -1,16 +1,16 @@
 <template>
   <div class="columns is-mobile is-centered ">
 
-    <form @submit=" login" class="column is-4  box ">
+    <form @submit=" login" class="column is-4  box    has-text-light  sonrisa  ">
       <h3 class=" title is-3 ">Inicia sesion </h3>
       <div class="field">
-        <label class="label">Correo</label>
+        <label class="label has-text-light ">Correo</label>
         <div class="control">
           <input class="input" type="email" placeholder="Correo" v-model=" form_data.email  ">
         </div>
       </div>
       <div class="field">
-        <label class="label">Contraseña</label>
+        <label class="label has-text-light ">Contraseña</label>
         <div class="control">
           <input class="input" type="password" placeholder="contraseña" v-model=" form_data.password  ">
         </div>
@@ -19,8 +19,11 @@
         <button class="button is-info "> Enviar </button>
       </div>
       <p>
-        Aún no tienes una cuenta ? <router-link to="/Signin">Registrarse</router-link>
+        *Si aun no tienes cuenta, contacta con un administrador
       </p>
+      <!-- <p>
+        Aún no tienes una cuenta ? <router-link to="/Signin">Registrarse</router-link>
+      </p> -->
     </form>
 
   </div>
@@ -91,4 +94,10 @@
 
 <style>
 
+
+.sonrisa{
+  background-image: url( '../assets/son.jpg');
+  background-position: center;
+  background-size: cover;
+}
 </style>

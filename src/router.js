@@ -27,6 +27,9 @@ import BuscarFolio from './views/paciente/Folio.vue'
 import Expediente from './views/paciente/Expediente.vue'
 import VerCitas from './views/paciente/Citas.vue'
 
+// Buscar pacietne
+
+import BuscarPaciente from './views/paciente/BuscarPaciente.vue'
 
 
 import Modals from './views/Modals.vue'
@@ -111,6 +114,11 @@ export default new Router({
       name: 'citas',
       component: VerCitas
     },
+    {
+      path: '/buscar-paciente',
+      name: 'buscar-paciente',
+      component: BuscarPaciente
+    },
 
     {
       path: '/ver-expediente/:id',
@@ -123,8 +131,8 @@ export default new Router({
       component: About
     },
     {
-      path: '/contact',
-      name: 'contact',
+      path: '/contacto',
+      name: 'contacto',
       component: Contact
     },
     {

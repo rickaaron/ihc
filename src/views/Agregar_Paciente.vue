@@ -94,7 +94,7 @@
               </div>
 
               <div class="field">
-                <label class="label"> Nuero de hijos </label>
+                <label class="label"> Numero de hijos </label>
                 <div class="control">
                   <input class="input" type="text" placeholder="Hijos" v-model=" patient.children  ">
                 </div>
